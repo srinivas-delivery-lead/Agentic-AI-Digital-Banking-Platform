@@ -19,6 +19,20 @@ Customer: **“I don't recognize the ₹25,000 transaction. Check it and raise a
 7. GenAI drafts a customer-friendly response.
 8. Every action is written to the audit trail.
 
+## Two end-to-end banking journeys
+
+### Phase 1 — Transaction dispute
+Customer query → GenAI intent → Transaction Agent → Fraud/Dispute Agent → risk/policy check → human approval → synthetic dispute → audit trail.
+
+### Phase 2 — Agentic loan origination
+Loan application → KYC Agent → Eligibility Agent → Risk Agent → human approval → simulated decision → audit trail.
+
+Try Phase 2 through `POST /loan/apply`:
+```json
+{"customer_id":"C1001","amount":500000,"monthly_income":100000,"monthly_obligations":20000,"human_approved":false}
+```
+The first call deliberately stops at `HUMAN_APPROVAL_REQUIRED`. Set `human_approved` to `true` to demonstrate the controlled final step.
+
 ## GenAI capabilities
 - Natural-language intent understanding
 - RAG-style answers grounded in bank policy documents
@@ -79,4 +93,4 @@ BankAI intentionally separates **LLM reasoning** from **banking authority**. Sen
 ## Interview positioning
 This is a **reference architecture and working prototype** built to demonstrate how a delivery leader can translate a banking use case into an AI-enabled product: business workflow, architecture, controls, backlog, APIs, testing, governance and measurable outcomes.
 
-See [`docs/INTERVIEW_GUIDE.md`](docs/INTERVIEW_GUIDE.md) for a simple explanation and demo script.
+See [`docs/INTERVIEW_GUIDE.md`](docs/INTERVIEW_GUIDE.md) for a simple explanation and demo script, and [`docs/PHASE2_LOAN_ORIGINATION.md`](docs/PHASE2_LOAN_ORIGINATION.md) for the Phase 2 design.
